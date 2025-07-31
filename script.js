@@ -132,9 +132,59 @@ if (highlightedSpan) {
 }
 
 // =============================================
-// 5. GSAP ANIMATIONS SETUP (Future Step)
+// 5. BASIC ANIMATION TEST
 // =============================================
-// All our scroll-triggered animations will go here
+/*
+   Testing GSAP with a simple animation to verify everything is working
+   This is a simple fade-in animation before we build complex scroll-triggered ones
+*/
+
+console.log("🎬 Starting Basic Animation Test:");
+
+// Test 1: Badge fade-in animation
+gsap.to('.highlighted-one', {
+    /*
+       opacity: 1 - Animates from current opacity (0) to fully visible
+       duration: 1 - Animation takes 1 second to complete
+       delay: 1 - Wait 1 second before starting (gives time to see initial state)
+    */
+    opacity: 1,
+    duration: 1,
+    delay: 1,
+    
+    /*
+       ease: "power2.out" - Makes animation start fast and slow down (more natural)
+       Default ease is "power2.out" but it's good to be explicit
+    */
+    ease: "power2.out",
+    
+    /*
+       onStart/onComplete - Callback functions to track animation progress
+       These help us understand when animations begin and end
+    */
+    onStart: () => console.log("  ✅ Badge animation started"),
+    onComplete: () => console.log("  ✅ Badge animation completed - badge should be visible!")
+});
+
+// Test 2: Character animation preview (very subtle)
+gsap.from('.text-revel .char', {
+    /*
+       This is a preview of character animation
+       .from() animates FROM these values TO the current state
+       yPercent: -10 means characters start 10% above their normal position
+    */
+    yPercent: -10,
+    opacity: 0.3,
+    duration: 2,
+    delay: 0.5,
+    stagger: 0.03, // Animates each character with 0.03s delay between them
+    ease: "power2.out",
+    
+    onStart: () => console.log("  ✅ Character animation preview started"),
+    onComplete: () => console.log("  ✅ Character animation preview completed")
+});
+
+console.log("  ⏳ Animations queued - watch the page for 3 seconds!");
 
 // =============================================
 // 6. SMOOTH SCROLLING SETUP (Future Step)
