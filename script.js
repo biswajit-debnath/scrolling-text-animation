@@ -34,9 +34,39 @@ console.log("  ✓ Lenis loaded:", typeof Lenis !== 'undefined' ? "✅ Success" 
 // We'll store references to our HTML elements here
 
 // =============================================
-// 3. SPLITTYPE SETUP (Next Step)
+// 3. SPLITTYPE SETUP
 // =============================================
-// SplitType will split our text into individual characters for animation
+/*
+   SplitType automatically wraps each character in a <span> element
+   This allows us to animate individual characters independently
+   
+   What happens:
+   Before: "Hello" 
+   After:  <span class="char">H</span><span class="char">e</span><span class="char">l</span><span class="char">l</span><span class="char">o</span>
+*/
+
+const splitText = new SplitType('.text-revel', {
+    /*
+       types: 'chars' tells SplitType to split by individual characters
+       Other options include:
+       - 'words' (split by words)
+       - 'lines' (split by lines)  
+       - 'chars,words' (split by both)
+    */
+    types: 'chars'
+});
+
+console.log("📖 SplitType Results:");
+console.log("  ✓ SplitType instance:", splitText);
+console.log("  ✓ Characters created:", splitText.chars ? splitText.chars.length : 0);
+console.log("  ✓ Individual characters:", splitText.chars);
+
+/*
+   IMPORTANT: After SplitType runs, we can access:
+   - splitText.chars = array of all character elements
+   - Each character is now a <span class="char"> element
+   - We can animate these characters with GSAP using the class '.char'
+*/
 
 // =============================================
 // 4. DYNAMIC ELEMENT CREATION (Next Step)
