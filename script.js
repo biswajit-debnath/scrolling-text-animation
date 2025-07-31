@@ -86,9 +86,50 @@ console.log("  ✓ Individual characters:", splitText.chars);
 */
 
 // =============================================
-// 4. DYNAMIC ELEMENT CREATION (Next Step)
+// 4. DYNAMIC ELEMENT CREATION
 // =============================================
-// We'll create the animated badge element using JavaScript
+/*
+   Creating the animated badge element dynamically with JavaScript
+   This is better than hardcoding it in HTML because:
+   1. It keeps our HTML clean and semantic
+   2. We can conditionally create it based on JavaScript availability
+   3. We have full control over when and how it's created
+*/
+
+if (highlightedSpan) {
+    // Create a new span element for our animated badge
+    const badge = document.createElement('span');
+    
+    /*
+       Set the CSS class - this connects to our .highlighted-one styles
+       The CSS we created in Step 2 will automatically apply:
+       - position: absolute
+       - opacity: 0 (hidden initially)
+       - circular shape, orangered background, etc.
+    */
+    badge.className = 'highlighted-one';
+    
+    /*
+       Set the content - this will be the number "1" inside the circle
+       You could make this dynamic (like a counter) in more complex projects
+    */
+    badge.textContent = "1";
+    
+    /*
+       Append the badge to the highlighted span
+       This makes the badge a child of .highlights, so our absolute positioning works
+    */
+    highlightedSpan.appendChild(badge);
+    
+    console.log("🎯 Dynamic Element Creation:");
+    console.log("  ✅ Badge element created successfully");
+    console.log("  ✅ Badge element:", badge);
+    console.log("  ✅ Badge positioned relative to:", highlightedSpan.textContent);
+    console.log("  ✅ Badge should be invisible (opacity: 0) until animated");
+    
+} else {
+    console.error("❌ Cannot create badge - highlighted span not found!");
+}
 
 // =============================================
 // 5. GSAP ANIMATIONS SETUP (Future Step)
