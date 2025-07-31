@@ -1,0 +1,251 @@
+/* 
+   UNIVERSAL RESET AND BASE SETUP
+   ==============================
+   This section resets browser defaults and sets up our foundation
+*/
+
+* {
+    /* Reset all default margins and padding from browser */
+    margin: 0;
+    padding: 0;
+    
+    /* 
+       Border-box ensures padding and border are included in element's total width/height
+       This makes layout calculations more predictable for animations
+    */
+    box-sizing: border-box;
+    
+    /* 
+       Disable text selection to prevent users from accidentally selecting text during animations
+       This creates a cleaner user experience
+    */
+    user-select: none;
+    
+    /* Set default cursor to pointer for better UX */
+    cursor: default;
+}
+
+/* 
+   HTML AND BODY BASE SETUP
+   ========================
+   Setting up the foundation for our full-height layout
+*/
+html,
+body {
+    /* 
+       Full height ensures our main container can use 100vh properly
+       Width 100% ensures no horizontal overflow
+    */
+    height: 100%;
+    width: 100%;
+    
+    /* 
+       Font setup - using system fonts for better performance
+       You can replace this with custom fonts later
+    */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    
+    /* 
+       IMPORTANT: We'll disable this later because Lenis will handle smooth scrolling
+       But it's good to have as fallback for browsers that don't support our smooth scroll library
+    */
+    scroll-behavior: smooth;
+    
+    /* 
+       Dark theme background - better for text animation visibility
+       Dark backgrounds make light text pop and animations more dramatic
+    */
+    background-color: #0a0a0a;
+    color: #ffffff;
+    
+    /* 
+       Remove any default scrollbars styling
+       Lenis will handle the scrolling experience
+    */
+    overflow-x: hidden;
+}
+
+/* 
+   MAIN CONTAINER STYLING
+   ======================
+   This is our primary animation trigger area and content container
+*/
+main {
+    /* 
+       Full viewport height - this creates the scroll area for our animation
+       The element will be "pinned" during scroll animations
+    */
+    height: 100vh;
+    width: 100%;
+    
+    /* 
+       CSS Grid with place-items: center is the most efficient way to center content
+       both horizontally and vertically in modern CSS
+       Alternative: display: flex; align-items: center; justify-content: center;
+    */
+    display: grid;
+    place-items: center;
+    
+    /* 
+       Responsive padding - prevents text from touching screen edges on mobile
+       5vw = 5% of viewport width, adapts to any screen size
+       This ensures our text has breathing room on all devices
+    */
+    padding: 0 5vw;
+    
+    /* 
+       Position relative allows for potential absolute positioning of child elements
+       Useful for any decorative elements we might add later
+    */
+    position: relative;
+}
+
+/* 
+   TEXT REVEAL ELEMENT STYLING
+   ===========================
+   This is the main text that will be animated character by character
+*/
+.text-revel {
+    /* 
+       Responsive font sizing using viewport width units
+       2.5vw means 2.5% of viewport width - scales automatically
+       On a 1920px screen: 2.5vw = 48px
+       On a 375px mobile: 2.5vw = 9.375px (too small!)
+       We'll add clamp() for better control
+    */
+    font-size: clamp(24px, 2.5vw, 60px);
+    
+    /* 
+       Semi-bold weight (600) gives good readability without being too heavy
+       This weight works well for animations and maintains clarity
+    */
+    font-weight: 600;
+    
+    /* 
+       Line height 1.2 provides good readability for large text
+       Tighter line height (less than 1.4) works better for display text
+       This prevents lines from being too far apart during animations
+    */
+    line-height: 1.2;
+    
+    /* 
+       Center alignment keeps our text nicely centered
+       Important for the overall visual balance of the animation
+    */
+    text-align: center;
+    
+    /* 
+       Letter spacing adds breathing room between characters
+       This is especially important since we'll be animating individual characters
+       Slight positive letter spacing improves readability in animations
+    */
+    letter-spacing: 0.02em;
+    
+    /* 
+       Max width prevents text from being too wide on large screens
+       Creates better reading experience and keeps focus centered
+    */
+    max-width: 80vw;
+}
+
+/* 
+   HIGHLIGHTS STYLING
+   ==================
+   Special styling for the highlighted word that will have additional animations
+*/
+.highlights {
+    /* 
+       Orangered provides excellent contrast against our dark background
+       This color will change during the scroll animation from white to orangered
+       The color transition creates a visual emphasis effect
+    */
+    color: orangered;
+    
+    /* 
+       Slightly bolder font weight (700 vs 600) makes the highlighted word stand out
+       This subtle difference draws attention without being too dramatic
+       The weight difference works well with character-by-character animations
+    */
+    font-weight: 700;
+    
+    /* 
+       Smooth color transition for any color changes
+       This CSS transition will work alongside GSAP animations
+       0.3s provides smooth color changes without being too slow
+    */
+    transition: color 0.3s ease-in-out;
+    
+    /* 
+       Position relative is CRUCIAL for the animated badge we'll add later
+       This allows us to position the numbered badge (like "1") relative to this word
+       Without this, the badge positioning would be relative to the document
+    */
+    position: relative;
+}
+
+/* 
+   ANIMATED BADGE STYLING
+   ======================
+   This is the circular badge that appears next to the highlighted word
+*/
+.highlighted-one {
+    /* 
+       Absolute positioning relative to the .highlights parent
+       This allows precise control of where the badge appears
+    */
+    position: absolute;
+    
+    /* 
+       Positioning: top-right corner of the highlighted word
+       top: 0 aligns with the top of the parent text
+       right: -30px places it 30px to the right of the word (outside the word boundary)
+    */
+    top: 0;
+    right: -30px;
+    
+    /* 
+       Initially hidden - GSAP will animate this to 1
+       Starting at opacity: 0 allows for smooth fade-in animations
+    */
+    opacity: 0;
+    
+    /* 
+       Perfect circle using border-radius: 50%
+       When width and height are equal, 50% creates a perfect circle
+    */
+    border-radius: 50%;
+    
+    /* 
+       Background color matches our highlight color for visual consistency
+       Creates a cohesive color scheme throughout the animation
+    */
+    background-color: orangered;
+    
+    /* 
+       Size: 30x30px creates a noticeable but not overwhelming badge
+       Large enough to contain a number, small enough not to distract
+    */
+    width: 30px;
+    height: 30px;
+    
+    /* 
+       Text styling for the number inside the badge
+       White text on orangered background provides excellent contrast
+    */
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    
+    /* 
+       Center the number inside the circular badge
+       CSS Grid with place-items is the most reliable centering method
+    */
+    display: grid;
+    place-items: center;
+    
+    /* 
+       Transform origin for animations
+       This ensures scaling and rotation animations happen from the center
+    */
+    transform-origin: center;
+}
