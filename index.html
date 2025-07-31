@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Text Animation - Learning GSAP, Lenis & SplitType</title>
+    
+    <!-- Link to our custom CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 
+        MAIN CONTAINER:
+        This will be our primary container that holds the text content.
+        We'll use this as the trigger for our scroll animations.
+    -->
+    <main>
+        <!-- 
+            TEXT REVEAL ELEMENT:
+            - class="text-revel": This will be targeted by SplitType to split into individual characters
+            - The text content will be animated character by character as we scroll
+            - The span with class="highlights" will have special styling and animation
+        -->
+        <p class="text-revel">
+            We refuse to accept a future where our devices are exhausting, addictive, and 
+            <span class="highlights">distracting</span>
+        </p>
+    </main>
+    
+    <!-- 
+        EXTERNAL LIBRARIES:
+        Loading all the animation libraries we need:
+        1. GSAP Core - Main animation library
+        2. ScrollTrigger - GSAP plugin for scroll-based animations
+        3. SplitType - Library to split text into individual characters/words
+        4. Lenis - Smooth scrolling library
+        5. Our custom JavaScript file
+    -->
+    
+    <!-- GSAP Core Library - The main animation engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <!-- GSAP ScrollTrigger Plugin - Enables scroll-based animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- SplitType - Splits text into individual characters for animation -->
+    <script src="https://unpkg.com/split-type"></script>
+    
+    <!-- Lenis - Smooth scrolling library for better user experience -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    
+    <!-- Our custom JavaScript file (we'll create this in the next step) -->
+    <script src="script.js"></script>
+</body>
+</html>
