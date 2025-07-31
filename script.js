@@ -29,9 +29,26 @@ console.log("  ✓ SplitType loaded:", typeof SplitType !== 'undefined' ? "✅ S
 console.log("  ✓ Lenis loaded:", typeof Lenis !== 'undefined' ? "✅ Success" : "❌ Failed", Lenis);
 
 // =============================================
-// 2. DOM ELEMENT REFERENCES (Next Step)
+// 2. DOM ELEMENT REFERENCES
 // =============================================
-// We'll store references to our HTML elements here
+/*
+   Getting references to our HTML elements before we manipulate them
+   We use querySelector (single element) vs querySelectorAll (multiple elements)
+*/
+
+// Get the highlighted span element (there's only one, so querySelector is better than querySelectorAll)
+const highlightedSpan = document.querySelector('.highlights');
+
+console.log("🎯 DOM Element References:");
+console.log("  ✓ Highlighted span found:", highlightedSpan ? "✅ Success" : "❌ Not found");
+
+if (highlightedSpan) {
+    console.log("  ✓ Text content:", `"${highlightedSpan.textContent}"`);
+    console.log("  ✓ Current color:", getComputedStyle(highlightedSpan).color);
+    console.log("  ✓ Element ready for badge insertion");
+} else {
+    console.error("❌ Could not find .highlights element!");
+}
 
 // =============================================
 // 3. SPLITTYPE SETUP
