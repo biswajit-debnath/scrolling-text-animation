@@ -320,3 +320,56 @@ scrollTimeLine.to('.highlighted-one', {
 });
 
 console.log("  ✅ Badge keyframe animation added to timeline");
+
+// =============================================
+// 8. LENIS SMOOTH SCROLLING INTEGRATION
+// =============================================
+/*
+   Setting up Lenis for buttery-smooth scrolling experience
+   Lenis provides better scrolling than native browser scrolling
+*/
+
+function smoothScroll() {
+    console.log("🚀 Initializing Lenis Smooth Scrolling:");
+    
+    /*
+       Create new Lenis instance with default settings
+       Lenis automatically detects the scrolling container and applies smooth scrolling
+    */
+    const lenis = new Lenis();
+    
+    /*
+       Connect Lenis to GSAP ScrollTrigger
+       Every time Lenis updates scroll position, it tells ScrollTrigger to update
+       This ensures ScrollTrigger animations stay synchronized with smooth scrolling
+    */
+    lenis.on('scroll', ScrollTrigger.update);
+    
+    /*
+       Set up RequestAnimationFrame loop using GSAP's ticker
+       GSAP's ticker is more reliable than regular requestAnimationFrame
+       lenis.raf() updates Lenis on every frame for smooth performance
+    */
+    gsap.ticker.add((time) => {
+        /*
+           time * 1000 converts GSAP's time (in seconds) to milliseconds
+           Lenis expects time in milliseconds for proper timing calculations
+        */
+        lenis.raf(time * 1000);
+    });
+    
+    /*
+       Disable GSAP's lag smoothing for better Lenis integration
+       This prevents GSAP from trying to "catch up" after frame drops
+       Lenis handles timing more accurately without this interference
+    */
+    gsap.ticker.lagSmoothing(0);
+    
+    console.log("  ✅ Lenis instance created:", lenis);
+    console.log("  ✅ Connected to ScrollTrigger");
+    console.log("  ✅ RAF loop established with GSAP ticker");
+    console.log("  ✅ Smooth scrolling is now active!");
+}
+
+// Initialize smooth scrolling
+smoothScroll();
