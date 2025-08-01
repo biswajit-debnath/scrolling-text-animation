@@ -230,3 +230,47 @@ const scrollTimeLine = gsap.timeline({
 
 console.log("  ✅ ScrollTrigger timeline created:", scrollTimeLine);
 console.log("  ✅ Ready to add animations to timeline");
+
+// =============================================
+// 7. TIMELINE ANIMATIONS
+// =============================================
+/*
+   Adding animations to our ScrollTrigger timeline
+   Each animation will play in sequence as the user scrolls
+*/
+
+console.log("🎭 Adding animations to timeline:");
+
+// Animation 1: Character Reveal
+scrollTimeLine.from('.text-revel .char', {
+    /*
+       yPercent: -20 - Characters start 20% above their normal position
+       Using yPercent instead of y makes it responsive to character size
+    */
+    yPercent: -20,
+    
+    /*
+       opacity: 0 - Characters start completely invisible
+       They will animate to their natural opacity (1)
+    */
+    opacity: 0,
+    
+    /*
+       willChange: 'transform' - Tells browser to optimize for transform animations
+       This improves performance during scroll-triggered animations
+    */
+    willChange: 'transform',
+    
+    /*
+       stagger: 0.05 - Each character starts 0.05 seconds after the previous one
+       Creates the typewriter effect as characters appear sequentially
+    */
+    stagger: 0.05,
+    
+    /*
+       No duration needed - ScrollTrigger with scrub handles timing
+       Animation duration is determined by scroll distance
+    */
+});
+
+console.log("  ✅ Character reveal animation added to timeline");
