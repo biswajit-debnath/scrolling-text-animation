@@ -132,61 +132,101 @@ if (highlightedSpan) {
 }
 
 // =============================================
-// 5. BASIC ANIMATION TEST
+// 5. BASIC ANIMATION TEST (DISABLED FOR SCROLL ANIMATIONS)
 // =============================================
 /*
-   Testing GSAP with a simple animation to verify everything is working
-   This is a simple fade-in animation before we build complex scroll-triggered ones
+   These basic animations were for testing - now commented out
+   so they don't interfere with our scroll-triggered animations
 */
 
+/*
 console.log("🎬 Starting Basic Animation Test:");
 
 // Test 1: Badge fade-in animation
 gsap.to('.highlighted-one', {
-    /*
-       opacity: 1 - Animates from current opacity (0) to fully visible
-       duration: 1 - Animation takes 1 second to complete
-       delay: 1 - Wait 1 second before starting (gives time to see initial state)
-    */
     opacity: 1,
     duration: 1,
     delay: 1,
-    
-    /*
-       ease: "power2.out" - Makes animation start fast and slow down (more natural)
-       Default ease is "power2.out" but it's good to be explicit
-    */
     ease: "power2.out",
-    
-    /*
-       onStart/onComplete - Callback functions to track animation progress
-       These help us understand when animations begin and end
-    */
     onStart: () => console.log("  ✅ Badge animation started"),
     onComplete: () => console.log("  ✅ Badge animation completed - badge should be visible!")
 });
 
 // Test 2: Character animation preview (very subtle)
 gsap.from('.text-revel .char', {
-    /*
-       This is a preview of character animation
-       .from() animates FROM these values TO the current state
-       yPercent: -10 means characters start 10% above their normal position
-    */
     yPercent: -10,
     opacity: 0.3,
     duration: 2,
     delay: 0.5,
-    stagger: 0.03, // Animates each character with 0.03s delay between them
+    stagger: 0.03,
     ease: "power2.out",
-    
     onStart: () => console.log("  ✅ Character animation preview started"),
     onComplete: () => console.log("  ✅ Character animation preview completed")
 });
 
 console.log("  ⏳ Animations queued - watch the page for 3 seconds!");
+*/
 
 // =============================================
-// 6. SMOOTH SCROLLING SETUP (Future Step)
+// 6. SCROLLTRIGGER TIMELINE SETUP
 // =============================================
-// Lenis configuration for enhanced scrolling experience
+/*
+   Creating a GSAP timeline with ScrollTrigger for scroll-based animations
+   This is the foundation of our scrolling text animation
+*/
+
+console.log("🎬 Setting up ScrollTrigger Timeline:");
+
+const scrollTimeLine = gsap.timeline({
+    scrollTrigger: {
+        /*
+           trigger: 'main' - The element that triggers the animation
+           When this element enters the viewport, animations start
+        */
+        trigger: 'main',
+        
+        /*
+           scroller: 'body' - The scrolling container
+           Usually 'body' for full-page scrolling
+           Could be a specific div for custom scroll containers
+        */
+        scroller: 'body',
+        
+        /*
+           scrub: true - Animation progress tied directly to scroll position
+           - true: Animation syncs perfectly with scroll
+           - number (like 1): Adds smooth delay to animation
+           - false: Animation plays once when triggered
+        */
+        scrub: true,
+        
+        /*
+           pin: true - "Pins" the trigger element during animation
+           The main element stays fixed while user scrolls
+           Creates the effect of scrolling "through" the animation
+        */
+        pin: true,
+        
+        /*
+           start/end determine when animation begins/ends
+           Default: "top bottom" and "bottom top"
+           We're using defaults which work perfectly for our use case
+        */
+        
+        // Debug markers (uncomment to see trigger points)
+        // markers: true,
+        
+        // Callbacks for debugging
+        onStart: () => console.log("  ✅ ScrollTrigger animation started"),
+        onComplete: () => console.log("  ✅ ScrollTrigger animation completed"),
+        onUpdate: self => {
+            // Log progress occasionally (every 25%)
+            if (Math.floor(self.progress * 4) !== Math.floor((self.progress - 0.01) * 4)) {
+                console.log(`  📊 Animation progress: ${Math.round(self.progress * 100)}%`);
+            }
+        }
+    }
+});
+
+console.log("  ✅ ScrollTrigger timeline created:", scrollTimeLine);
+console.log("  ✅ Ready to add animations to timeline");
