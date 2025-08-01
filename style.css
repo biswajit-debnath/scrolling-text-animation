@@ -1,3 +1,9 @@
+/* Custom fonts */
+@font-face {
+   font-family: 'myCustomFont';
+   src: url(./font.woff);
+}
+
 /* 
    UNIVERSAL RESET AND BASE SETUP
    ==============================
@@ -43,13 +49,13 @@ body {
        Font setup - using system fonts for better performance
        You can replace this with custom fonts later
     */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    font-family: 'myCustomFont', 'Segoe UI', Arial, sans-serif;
     
     /* 
        IMPORTANT: We'll disable this later because Lenis will handle smooth scrolling
        But it's good to have as fallback for browsers that don't support our smooth scroll library
     */
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     
     /* 
        Dark theme background - better for text animation visibility
@@ -62,7 +68,7 @@ body {
        Remove any default scrollbars styling
        Lenis will handle the scrolling experience
     */
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 /* 
