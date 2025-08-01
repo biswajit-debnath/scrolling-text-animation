@@ -291,3 +291,32 @@ scrollTimeLine.to(highlightedSpan, {
 });
 
 console.log("  ✅ Highlight color change animation added to timeline");
+
+// Animation 3: Badge Keyframe Animation
+scrollTimeLine.to('.highlighted-one', {
+    /*
+       Keyframes allow multiple animation stages in one animation
+       Each array represents the values at different points in the animation
+    */
+    keyframes: {
+        /*
+           yPercent: [0, -50, 0] - Badge movement in 3 stages:
+           - Stage 1: 0 (normal position)
+           - Stage 2: -50 (moves up 50% of its height)  
+           - Stage 3: 0 (back to normal position)
+           Creates a bounce-up effect
+        */
+        yPercent: [0, -50, 0],
+        
+        /*
+           opacity: [0, 1, 1] - Badge visibility in 3 stages:
+           - Stage 1: 0 (invisible)
+           - Stage 2: 1 (fully visible)
+           - Stage 3: 1 (stays visible)
+           Badge fades in and stays visible after bounce
+        */
+        opacity: [0, 1, 1]
+    }
+});
+
+console.log("  ✅ Badge keyframe animation added to timeline");
