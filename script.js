@@ -274,3 +274,20 @@ scrollTimeLine.from('.text-revel .char', {
 });
 
 console.log("  ✅ Character reveal animation added to timeline");
+
+// Animation 2: Highlight Color Change
+scrollTimeLine.to(highlightedSpan, {
+    /*
+       color: '#c75656' - Changes text color to a red shade
+       This creates visual emphasis on the highlighted word "distracting"
+       The color transition happens after characters are revealed
+    */
+    color: '#c75656',
+    
+    /*
+       The CSS transition we added earlier (transition: color 0.3s ease-in-out)
+       will work together with this GSAP animation for smooth color changes
+    */
+});
+
+console.log("  ✅ Highlight color change animation added to timeline");
