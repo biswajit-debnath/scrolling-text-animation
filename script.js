@@ -13,7 +13,7 @@ if (highlightedSpan) {
 
 const scrollTimeLine = gsap.timeline({
     scrollTrigger: {
-        trigger: 'main',
+        trigger: 'body',
         scroller: 'body',
         scrub: true,
         pin: true,
