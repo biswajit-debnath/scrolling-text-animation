@@ -20,7 +20,7 @@ body {
     color: #ffffff;
 }
 
-main {
+.text-revel-container {
     height: 100vh;
     width: 100%;
     display: grid;
@@ -28,7 +28,6 @@ main {
     padding: 0 5vw;
     position: relative;
 }
-
 .text-revel {
     font-size: clamp(24px, 2.65vw, 60px);
     font-weight: 600;
@@ -59,4 +58,58 @@ main {
     display: grid;
     place-items: center;
     transform-origin: center;
+}
+
+#version-two-link {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#version-two-link a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 20px;
+    background-color: #644a4a;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+#version-two-link a:hover {
+    background-color: #ca5757;
+    transform: translateY(-2px);
+}
+
+
+@media (max-width: 1350px) {
+   .highlighted-one {
+      width: 25px;
+      height: 25px;
+      font-size: 14px;
+      right: -25px;
+   }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 1000px) {
+    .highlighted-one {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        right: -22px;
+    }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 480px) {
+    .highlighted-one {
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+        right: -20px;
+    }
 }
