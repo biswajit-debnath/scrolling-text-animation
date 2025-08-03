@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'myCustomFont';
+    src: url(./font.woff);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'myCustomFont', 'Segoe UI', Arial, sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+}
+
+.page-one {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 5vw 0;
+    position: relative;
+}
+
+.text-container {
+    padding: 4vw;
+}
+
+.text-container {
+    font-size: 6vw;
+    font-weight: 600;
+}
+
+.text-container span {
+    display: inline-block;
+}
+
+.empty-container {
+    height: 60vh;
+    width: 100%;
+}
